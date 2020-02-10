@@ -30,7 +30,7 @@ def get_temps_cloud(id, start_date, end_date, required_data):
 
         amphora_api = a10a.AmphoraeApi(a10a.ApiClient(configuration))
         print(f'Getting signals for: {amphora_api.amphorae_read(id).name}')
-        signals = amphora_api.amphorae_get_signals(id)
+        signals = amphora_api.amphorae_signals_get_signals(id)
         properties=list((s._property for s in signals))
         print(properties)
 

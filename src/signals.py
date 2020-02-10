@@ -1,10 +1,10 @@
-from amphora_client import SignalDto
+from amphora_client import Signal
 
 def signals():
     return [
-        SignalDto(_property='description', value_type='String'),
-        SignalDto(_property='temperature', value_type='Numeric'),
-        SignalDto(_property='solarZenithAngle', value_type='Numeric'),
-        SignalDto(_property='cloudCover', value_type='Numeric'),
-        SignalDto(_property='ghi', value_type='Numeric'),
+        Signal(_property='description', value_type='String'),
+        Signal(_property='temperature', value_type='Numeric'),
+        Signal(_property='solarZenithAngle', value_type='Numeric'),
+        Signal(_property='cloudCover', value_type='Numeric'),
+        Signal(_property='ghi', value_type='Numeric'),
     ]

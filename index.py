@@ -27,7 +27,6 @@ for key,value in towns.items():
     location_infos.update(location_info)
 
 amphora_map = ghi_load()
-
 ghi_locations.update(amphora_map)
 print(ghi_locations)
 

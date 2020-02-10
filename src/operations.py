@@ -32,7 +32,7 @@ def upload_signals_to_amphora(irradiation_amphora_id, signals):
 
     try:
         print(signals)
-        amphora_api.amphorae_upload_signal_batch(irradiation_amphora_id, request_body = signals)
+        amphora_api.amphorae_signals_upload_signal_batch(irradiation_amphora_id, request_body = signals)
 
     except ApiException as e:
         print("Exception when calling AmphoraeApi: %s\n" % e)
@@ -71,26 +71,30 @@ def create_or_update_amphorae(amphora_map, location_info):
                     '- Cloud Cover (%)\r\nTemperature and cloud cover signals supplied by Weatherzone'
                 labels = 'Weather,forecast,solar,timeseries'
 
-                dto = amphora_client.CreateAmphoraDto(name=name, description=desc, price=0, lat=ghiloc['lat'], lon=ghiloc['long'], labels=labels)
+                #TODO: add terms_and_conditions_id when it's on the website
+                #terms_and_conditions_id = ''
 
-                res = amphora_api.amphorae_create(create_amphora_dto=dto)
+
+                dto = amphora_client.CreateAmphora(name=name, description=desc, price=0, lat=ghiloc['lat'], lon=ghiloc['long'], labels=labels)
+
+                res = amphora_api.amphorae_create(create_amphora=dto)
                 # now create the signals
                 print("Creating Signals")
                 for s in signals():
-                    amphora_api.amphorae_create_signal(res.id, signal_dto=s)
+                    amphora_api.amphorae_signals_create_signal(res.id, signal=s)
 
                 new_map[key] = res.id
             else:
                 a = amphora_api.amphorae_read(id)
                 print(f'Using existing amphora: {a.name}')
                 new_map[key] = id
-                existing_signals = amphora_api.amphorae_get_signals(id)
+                existing_signals = amphora_api.amphorae_signals_get_signals(id)
                 if(len(existing_signals) > 0):
                     print('Signals exist already')
                 else:
                     print('Adding signals')
                     for s in signals():
-                        amphora_api.amphorae_create_signal(id, signal_dto= s)
+                        amphora_api.amphorae_signals_create_signal(id, signal= s)
 
     except ApiException as e:
         print("Error Create or update amphorae: %s\n" % e)
