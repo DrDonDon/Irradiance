@@ -1,0 +1,10 @@
+
+amphoradata==0.5.0.dev2
+requests
+python-dotenv
+pytz
+pysolar
+pandas
+pvlib
+netCDF4
+siphon
