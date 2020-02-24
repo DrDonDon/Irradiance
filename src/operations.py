@@ -70,12 +70,12 @@ def create_or_update_amphorae(amphora_map, location_info):
                     '- Solar Zenith Angle\r\n- Global Horizontal Irradiance (W/m^2)\r\n' + \
                     '- Cloud Cover (%)\r\nTemperature and cloud cover signals supplied by Weatherzone'
                 labels = 'Weather,forecast,solar,timeseries'
-
-                #TODO: add terms_and_conditions_id when it's on the website
-                #terms_and_conditions_id = ''
+                ts_cs_id = 'Weatherzone_Forecast'
 
 
-                dto = amphora_client.CreateAmphora(name=name, description=desc, price=0, lat=ghiloc['lat'], lon=ghiloc['long'], labels=labels)
+                dto = amphora_client.CreateAmphora(name=name, description=desc,
+                    price=0, lat=ghiloc['lat'], lon=ghiloc['long'], labels=labels,
+                    terms_and_conditions_id=ts_cs_id)
 
                 res = amphora_api.amphorae_create(create_amphora=dto)
                 # now create the signals
