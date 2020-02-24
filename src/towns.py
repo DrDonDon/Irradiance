@@ -10,8 +10,5 @@ def town_info():
                 'weather_id': '1565c648-3a2b-4c8e-8e73-74bdec1cd89e'},
         '3132': {'name': 'Mitcham', 'lat': -37.8174, 'long': 145.1938,
                 'state': 'VIC', 'timezone': 'Australia/Melbourne',
-                'weather_id': '684997e2-61e4-4a90-9ac8-ffabad056e52'},
-        '200': {'name': 'test', 'lat': -37.8174, 'long': 145.1938,
-                'state': 'VIC', 'timezone': 'Australia/Melbourne',
                 'weather_id': '684997e2-61e4-4a90-9ac8-ffabad056e52'}
     }
